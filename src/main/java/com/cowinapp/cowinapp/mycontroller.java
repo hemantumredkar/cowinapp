@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class mycontroller {
     @GetMapping("/cources")
-    public String getData() { return "Please use cowin to book vacination"; }
+    public String getData() { return "Please use cowin app to book vacination"; }
 }
