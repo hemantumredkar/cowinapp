@@ -3,7 +3,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
 
-    agent { label 'jenkinsworker-node1' }
+    agent any
 
     tools {
         maven 'maven_3.8.1'
@@ -30,6 +30,13 @@ pipeline {
             steps {
                 echo 'Creating war file'
                 sh 'mvn clean package'
+            }
+        }
+        stage ('Build docker image'){
+            steps{
+                echo 'Creating the docker image'
+                sh 'yum install docker -y'
+                sh 'docker build -t mycustomimage Dockerfile'
             }
         }
     }
